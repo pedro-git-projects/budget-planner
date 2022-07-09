@@ -8,8 +8,8 @@ func TestPaymentString(t *testing.T) {
 		s    status
 		want string
 	}{
-		{true, "paid"},
-		{false, "pending"},
+		{0, "paid"},
+		{1, "pending"},
 	}
 
 	for _, tests := range stringCases {

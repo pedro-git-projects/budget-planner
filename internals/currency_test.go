@@ -21,7 +21,7 @@ func TestMultiply(t *testing.T) {
 	}
 }
 
-// TestRealString guarantees our currency is printed as expected
+// TestRealString guarantees the currency struct is formated as expected
 func TestRealString(t *testing.T) {
 	f := 0.886275000000000035
 	r := ToReal(f)
