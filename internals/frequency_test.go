@@ -5,7 +5,7 @@ import "testing"
 // TestStatusString is a table test for the String overload for the status type
 func TestStatusString(t *testing.T) {
 	var tests = []struct {
-		f    frequency
+		f    Frequency
 		want string
 	}{
 		{0, "recurring"},

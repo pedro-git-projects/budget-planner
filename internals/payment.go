@@ -2,14 +2,14 @@ package internals
 
 import "fmt"
 
-type status int
+type Status int
 
 const (
-	paid status = iota
-	pending
+	Paid Status = iota
+	Pending
 )
 
-func (s status) String() string {
+func (s Status) String() string {
 	switch s {
 	case 0:
 		return "paid"

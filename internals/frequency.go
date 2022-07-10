@@ -2,11 +2,11 @@ package internals
 
 import "fmt"
 
-type frequency int
+type Frequency int
 
 const (
-	recurring frequency = iota
-	oneTime
+	Recurring Frequency = iota
+	OneTime
 )
 
 /*
@@ -14,7 +14,7 @@ const (
 	printing the correct name for the type when it is correct
 	and simply printing the actual integer in case it is not
 */
-func (f frequency) String() string {
+func (f Frequency) String() string {
 	switch f {
 	case 0:
 		return "recurring"

@@ -11,12 +11,12 @@ func TestBillString(t *testing.T) {
 	date := "July 5, 2022"
 	d, _ := time.Parse(layoutUS, date)
 
-	b := Bill{
+	b := bill{
 		title:     "Jiu-Jitsu",
 		id:        1,
 		cost:      ToReal(230.00),
-		frequency: recurring,
-		status:    paid,
+		frequency: Recurring,
+		status:    Paid,
 		due:       d,
 	}
 

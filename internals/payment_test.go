@@ -5,7 +5,7 @@ import "testing"
 // TestPaymentString is a table test for the String overload for the status type
 func TestPaymentString(t *testing.T) {
 	var stringCases = []struct {
-		s    status
+		s    Status
 		want string
 	}{
 		{0, "paid"},
