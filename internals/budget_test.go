@@ -46,7 +46,7 @@ func TestRecurringBillsCost(t *testing.T) {
 	b3 := NewBill("b3", 1, 350, OneTime, Paid, "January 2, 2006")
 	m := NewBudgetManager(10000, *b1, *b2, *b3)
 
-	got := m.getRecurringBillsCost()
+	got := m.GetRecurringBillsCost()
 	want := ToReal(300)
 
 	if !reflect.DeepEqual(got, want) {

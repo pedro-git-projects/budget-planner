@@ -14,11 +14,13 @@ type budgetManager struct {
 // NewBudgetManager returns a new BudgetManager instance holding all the specified information
 func NewBudgetManager(totalBalance float64, bills ...bill) *budgetManager {
 	r := ToReal(totalBalance)
-	b := new(budgetManager)
-	b.totalBalance = r
+	b := &budgetManager{
+		totalBalance:            r,
+		balanceWithoutRecurring: r,
+		dailyLimit:              r,
+		bills:                   bills,
+	}
 	b.setBalanceWithoutRecurring()
-	b.dailyLimit = r
-	b.bills = bills
 	return b
 }
 
