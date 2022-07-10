@@ -20,11 +20,11 @@ type bill struct {
 }
 
 // NewBill returns a new bill instance holding all the specified information
-func NewBill(title string, id uint, cost Real, frequency Frequency, status Status, due string) *bill {
+func NewBill(title string, id uint, cost float64, frequency Frequency, status Status, due string) *bill {
 	b := new(bill)
 	b.title = title
 	b.id = id
-	b.cost = cost
+	b.cost = ToReal(cost)
 	b.frequency = frequency
 	b.status = status
 	b.due, _ = time.Parse(layoutUS, due)
@@ -33,5 +33,5 @@ func NewBill(title string, id uint, cost Real, frequency Frequency, status Statu
 
 // String overloads the default string reciever function for the bill type
 func (b bill) String() string {
-	return fmt.Sprintf("title: %s\n amount due ON or BEFORE %v: %v\n payment status: %v \n this bill is %s", b.title, b.due.Format(layoutUS), b.cost, b.status, b.frequency)
+	return fmt.Sprintf("title: %s\namount due ON or BEFORE %v: %v\npayment status: %v \nthis bill is %s", b.title, b.due.Format(layoutUS), b.cost, b.status, b.frequency)
 }

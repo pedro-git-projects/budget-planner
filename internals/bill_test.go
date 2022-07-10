@@ -16,7 +16,7 @@ func TestNewBill(t *testing.T) {
 	want := bill{
 		title:     "title",
 		id:        1,
-		cost:      1,
+		cost:      ToReal(1),
 		frequency: Recurring,
 		status:    Paid,
 		due:       d,
@@ -41,9 +41,9 @@ func TestBillString(t *testing.T) {
 	}
 
 	got := b.String()
-	s := fmt.Sprintf("title: Jiu-Jitsu\n amount due ON or BEFORE July 5, 2022: R$230.00\n payment status: paid \n this bill is recurring")
+	s := fmt.Sprintf("title: Jiu-Jitsu\namount due ON or BEFORE July 5, 2022: R$230.00\npayment status: paid \nthis bill is recurring")
 	want := s
 	if got != want {
-		t.Errorf("expected %v got %v", want, got)
+		t.Errorf("\nexpected %v \ngot %v", want, got)
 	}
 }
