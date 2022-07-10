@@ -12,7 +12,7 @@ const (
 
 type bill struct {
 	title     string
-	id        uint
+	id        int
 	cost      Real
 	frequency Frequency
 	status    Status
@@ -20,10 +20,10 @@ type bill struct {
 }
 
 // NewBill returns a new bill instance holding all the specified information
-func NewBill(title string, id uint, cost float64, frequency Frequency, status Status, due string) *bill {
+func NewBill(title string, cost float64, frequency Frequency, status Status, due string) *bill {
 	b := new(bill)
 	b.title = title
-	b.id = id
+	b.id = autoIncrement.ID()
 	b.cost = ToReal(cost)
 	b.frequency = frequency
 	b.status = status

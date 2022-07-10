@@ -9,13 +9,13 @@ import (
 
 // TestNewBill ensures that the function is equivalent to populating a struct directly
 func TestNewBill(t *testing.T) {
-	got := NewBill("title", 1, 1, Recurring, Paid, "January 2, 2006")
+	got := NewBill("title", 1, Recurring, Paid, "January 2, 2006")
 
 	date := "January 2, 2006"
 	d, _ := time.Parse(layoutUS, date)
 	want := bill{
 		title:     "title",
-		id:        1,
+		id:        0,
 		cost:      ToReal(1),
 		frequency: Recurring,
 		status:    Paid,
