@@ -3,28 +3,30 @@ package internals
 import (
 	"fmt"
 	"time"
-)
 
-const (
-	layoutISO = "2006-01-02"
-	layoutUS  = "January 2, 2006"
+	"github.com/bojanz/currency"
 )
 
 type bill struct {
 	title     string
 	id        int
-	cost      Real
+	cost      currency.Amount
 	frequency Frequency
 	status    Status
 	due       time.Time
 }
 
 // NewBill returns a new bill instance holding all the specified information
-func NewBill(title string, cost float64, frequency Frequency, status Status, due string) *bill {
+func NewBill(title string, cost string, frequency Frequency, status Status, due string) *bill {
+	c, err := currency.NewAmount(cost, "BRL")
+	if err != nil {
+		fmt.Println(fmt.Errorf(err.Error()))
+		return nil
+	}
 	b := new(bill)
 	b.title = title
 	b.id = autoIncrement.ID()
-	b.cost = ToReal(cost)
+	b.cost = c
 	b.frequency = frequency
 	b.status = status
 	b.due, _ = time.Parse(layoutUS, due)
