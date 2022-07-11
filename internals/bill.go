@@ -37,3 +37,10 @@ func NewBill(title string, cost string, frequency Frequency, status Status, due 
 func (b bill) String() string {
 	return fmt.Sprintf("title: %s\namount due ON or BEFORE %v: %v\npayment status: %v \nthis bill is %s", b.title, b.due.Format(layoutUS), b.cost, b.status, b.frequency)
 }
+
+// PayBill changes the bill status from Pending to Paid
+func (b *bill) PayBill() {
+	if b.status == Pending {
+		b.status = Paid
+	}
+}

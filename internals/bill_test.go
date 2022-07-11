@@ -51,3 +51,25 @@ func TestBillString(t *testing.T) {
 		t.Errorf("\nexpected %v \ngot %v", want, got)
 	}
 }
+
+// TestPayBill tests the PayBill reciever function
+// guaranteeing pending bills become paid and paid bills stay paid
+func TestPayBill(t *testing.T) {
+	var tests = []struct {
+		b    bill
+		want Status
+	}{
+		{*NewBill("Pending Bill", "100.00", OneTime, Pending, "July 26, 2022"), Paid},
+		{*NewBill("Paid Bill", "100.00", OneTime, Paid, "July 26, 2022"), Paid},
+	}
+
+	for _, test := range tests {
+		test.b.PayBill()
+		got := test.b.status
+		want := Paid
+
+		if got != want {
+			t.Errorf("expected %v got %v", want, got)
+		}
+	}
+}
