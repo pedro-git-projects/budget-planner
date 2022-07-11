@@ -49,7 +49,7 @@ func TestRecurringBillsCost(t *testing.T) {
 	m := NewBudgetManager("10000", *b1, *b2, *b3)
 
 	got := m.getRecurringBillsCost()
-	want, _ := currency.NewAmount("300", "BRL")
+	want, _ := currency.NewAmount("300", code)
 
 	if !reflect.DeepEqual(got, want) {
 		t.Errorf("expected %v but got %v\n", want, got)

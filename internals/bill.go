@@ -18,7 +18,7 @@ type bill struct {
 
 // NewBill returns a new bill instance holding all the specified information
 func NewBill(title string, cost string, frequency Frequency, status Status, due string) *bill {
-	c, err := currency.NewAmount(cost, "BRL")
+	c, err := currency.NewAmount(cost, code)
 	if err != nil {
 		fmt.Println(fmt.Errorf(err.Error()))
 		return nil

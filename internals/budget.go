@@ -16,7 +16,7 @@ type budgetManager struct {
 
 // NewBudgetManager returns a new BudgetManager instance holding all the specified information
 func NewBudgetManager(totalBalance string, bills ...bill) *budgetManager {
-	c, err := currency.NewAmount(totalBalance, "BRL")
+	c, err := currency.NewAmount(totalBalance, code)
 	if err != nil {
 		fmt.Println(fmt.Errorf(err.Error()))
 		return nil
@@ -64,7 +64,7 @@ func (b budgetManager) getRecurringBills() []bill {
 // getRecurringBillsCost returns the sum of the cost of all recurring bills and 0 if there are none
 func (b budgetManager) getRecurringBillsCost() currency.Amount {
 	r := b.getRecurringBills()
-	sum, _ := currency.NewAmount("0", "BRL")
+	sum, _ := currency.NewAmount("0", code)
 	if len(r) > 0 {
 		for i := 0; i < len(r); i++ {
 			sum, _ = sum.Add(r[i].cost)
@@ -90,8 +90,8 @@ func (b *budgetManager) setDailyLimit() {
 		fmt.Println(fmt.Errorf(err.Error()))
 	}
 	div := balanceF / n
-	limitString := fmt.Sprintf("%f", div)                // float -> string
-	limit, err := currency.NewAmount(limitString, "BRL") // string -> currency
+	limitString := fmt.Sprintf("%f", div)               // float -> string
+	limit, err := currency.NewAmount(limitString, code) // string -> currency
 	if err != nil {
 		fmt.Println(fmt.Errorf(err.Error()))
 	}
