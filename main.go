@@ -1,8 +1,9 @@
 package main
 
 import (
-	"calc/internals"
 	"fmt"
+
+	"github.com/pedro-git-projects/budget-planner/internals"
 )
 
 func main() {
