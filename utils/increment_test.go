@@ -5,6 +5,9 @@ import (
 	"testing"
 )
 
+// TODO: Add test for concurrent ID increment
+
+// TestID tests if the generated id's are incremental
 func TestID(t *testing.T) {
 	var i Increment
 	var s []int
