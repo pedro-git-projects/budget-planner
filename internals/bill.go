@@ -44,3 +44,8 @@ func (b *bill) PayBill() {
 		b.status = Paid
 	}
 }
+
+// GetId returns the id of a bill
+func (b bill) getId() int {
+	return b.id
+}

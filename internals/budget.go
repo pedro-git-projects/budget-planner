@@ -97,3 +97,41 @@ func (b *budgetManager) setDailyLimit() {
 	}
 	b.dailyLimit = limit.RoundTo(2, currency.RoundDown)
 }
+
+// getPaidSum returns the sum of all paid bills
+func (b budgetManager) getPaidSum() currency.Amount {
+	sum, _ := currency.NewAmount("0", code)
+	for i := 0; i < len(b.bills); i++ {
+		if b.bills[i].status == Paid {
+			sum, _ = sum.Add(b.bills[i].cost)
+		}
+	}
+	return sum
+}
+
+// getBillIdByTitle returns the ids and positions of all bills with a certain title
+func (b budgetManager) getBillPostionByTitle(t string) []int {
+	var positions []int
+	for i, bill := range b.bills {
+		if bill.title == t {
+			positions = append(positions, i)
+		}
+	}
+	return positions
+}
+
+// payBillByTitle pays the bill with the corresponding title if it unique and informs the ID otherwise
+func (b *budgetManager) payBillByTitle(t string) {
+	positions := b.getBillPostionByTitle(t)
+	if len(positions) > 1 {
+		fmt.Sprintln(fmt.Sprintf("There is more than one bill with the title %s:\n", t))
+		for i := 0; i < len(positions); i++ {
+			fmt.Sprintln(fmt.Sprintf("%v of ID: %v", b.bills[positions[i]], b.bills[positions[i]].getId()))
+		}
+		fmt.Sprintln("Please select the desired bill by ID instead")
+	}
+	if len(positions) == 1 {
+		b.bills[positions[0]].PayBill()
+		fmt.Sprintln("Bill paid successfully")
+	}
+}
