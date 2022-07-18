@@ -131,8 +131,12 @@ func (b *budgetManager) payBillByTitle(t string) {
 		fmt.Sprintln("Please select the desired bill by ID instead")
 	}
 	if len(positions) == 1 {
-		b.bills[positions[0]].PayBill()
-		b.totalBalance, _ = b.totalBalance.Sub(b.bills[positions[0]].cost)
-		fmt.Sprintln("Bill paid successfully")
+		err := b.bills[positions[0]].PayBill()
+		if err == nil {
+			b.totalBalance, _ = b.totalBalance.Sub(b.bills[positions[0]].cost)
+			fmt.Sprintln("Bill paid successfully")
+		} else {
+			fmt.Sprintln("Bill already paid")
+		}
 	}
 }

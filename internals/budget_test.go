@@ -113,4 +113,15 @@ func TestPayBillByTitle(t *testing.T) {
 	if !reflect.DeepEqual(got1, want1) {
 		t.Errorf("expected %v but got %v\n", want, got)
 	}
+
+	// Case 3: paying the same bill multiple times
+	m.payBillByTitle("b1")
+	m.payBillByTitle("b1")
+	m.payBillByTitle("b1")
+	got2 := m.totalBalance
+	want2, _ := currency.NewAmount("650", code)
+
+	if !reflect.DeepEqual(got2, want2) {
+		t.Errorf("expected %v but got %v\n", want, got)
+	}
 }

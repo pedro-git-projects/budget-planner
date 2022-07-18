@@ -1,6 +1,7 @@
 package internals
 
 import (
+	"errors"
 	"fmt"
 	"time"
 
@@ -39,10 +40,13 @@ func (b bill) String() string {
 }
 
 // PayBill changes the bill status from Pending to Paid
-func (b *bill) PayBill() {
+func (b *bill) PayBill() error {
 	if b.status == Pending {
 		b.status = Paid
+		return nil
 	}
+	err := errors.New("Bill already paid")
+	return err
 }
 
 // GetId returns the id of a bill
